@@ -12,6 +12,8 @@ public class MusicManager : MonoBehaviour {
 	public float bpm;
 	public float[] ranges;
 
+	public static int numBeats;
+
 	private float mTime;
 	private AudioSource audioSource;
 	private float bps;
@@ -29,7 +31,7 @@ public class MusicManager : MonoBehaviour {
 		listToInstantiate = new Dictionary<GameObject, Vector3>();
 		audioSource = GetComponent<AudioSource>();
 		bps = 1/(bpm / 60f);
-		Debug.Log("bps = " + bps);
+
 
 	}
 	
@@ -94,7 +96,9 @@ public class MusicManager : MonoBehaviour {
 
 	private void SpawnList()
 	{
-		Debug.Log("Instantiate");
+		numBeats++;
+		Debug.Log(numBeats);
+
 		GameObject instance;
 		foreach(KeyValuePair<GameObject, Vector3> toInstantiate in listToInstantiate)
 		{
@@ -103,7 +107,7 @@ public class MusicManager : MonoBehaviour {
 		listToInstantiate.Clear();
 
 
-		Invoke("CheckToInvoke", inverseBeatTime*bps + 0.02f);
+		Invoke("CheckToInvoke", inverseBeatTime*bps + 0.1f);
 
 	}
 

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour {
 
-	public int score;
+	public GameObject player;
 	// Use this for initialization
 	void Start () {
 		
@@ -13,6 +13,8 @@ public class Score : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		int score = player.GetComponent<Character> ().points;
 
 		this.GetComponent<Text> ().text = "Score: " + score;
 	}

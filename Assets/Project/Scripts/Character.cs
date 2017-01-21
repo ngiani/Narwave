@@ -6,11 +6,14 @@ public class Character : MonoBehaviour
 {
     public float health;
     public float dmg;
+	public int points;
+
     private bool isDead;
 
     void Start()
     {
         isDead = false;
+        points = 0;
     }
 
     void Update()
@@ -28,7 +31,7 @@ public class Character : MonoBehaviour
     {
         this.health -= dmg;
         this.CheckIsDead();
-        Debug.Log("VITA = "+health);
+        //Debug.Log("VITA = "+health);
     }
 
     public void CheckIsDead()
