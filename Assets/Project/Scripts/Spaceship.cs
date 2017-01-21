@@ -6,13 +6,11 @@ public class Spaceship : MonoBehaviour
 {
     private LaserWave laserWave;
     private LaserWaveRenderer laserWaveRenderer;
-    private MusicManager musicManager;
 
     private void Start()
     {
         laserWave = GetComponentInChildren<LaserWave>();
         laserWaveRenderer = GetComponentInChildren<LaserWaveRenderer>();
-        musicManager = FindObjectOfType<MusicManager>();
 
         Registry.musicManager.BeatPassed += MusicManager_BeatPassed;
     }
@@ -24,7 +22,7 @@ public class Spaceship : MonoBehaviour
 
     private void Update()
     {
-        if (musicManager.CheckRhythm() != RhythmState.awful)
+        if (Registry.musicManager.CheckRhythm() != RhythmState.awful)
         {
             if (Input.GetButtonDown("RightBumper"))
             {
