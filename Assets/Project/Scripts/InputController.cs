@@ -23,8 +23,7 @@ public class InputController : MonoBehaviour {
 		//Non può superare le metà della schermo
 		if (Camera.main.WorldToScreenPoint(gameObject.transform.position).x >= Screen.width / 2)
 			transform.position = new Vector2(0,transform.position.y);
-		
-		//Non può superare i bordi dello schermo
+
 		Vector2 leftUp = Camera.main.ScreenToWorldPoint (new Vector2(0, 0));
 		if (Camera.main.WorldToScreenPoint(gameObject.transform.position).x <= 0){
 			transform.position = new Vector2(leftUp.x,transform.position.y);
@@ -40,7 +39,8 @@ public class InputController : MonoBehaviour {
 		}
 
 
-					/*ANGOLO*/
+					/*ROTAZIONE*/
+
 		float axisFive = Input.GetAxis ("AxisFive");
 		float axisFour = Input.GetAxis ("AxisFour");
 
@@ -52,7 +52,9 @@ public class InputController : MonoBehaviour {
 
 		transform.GetChild(0).rotation = Quaternion.AngleAxis (rotation, new Vector3(0,0,1));
 	
-		//Sparo
+
+					/*SPARO*/
+
 		if (Input.GetButtonDown("LeftBumper"))
 			Debug.Log ("Left Bumper");
 		if (Input.GetButtonDown("RightBumper"))

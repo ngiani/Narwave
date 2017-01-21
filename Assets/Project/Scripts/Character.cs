@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public int health;
-    public int dmg;
+    public float health;
+    public float dmg;
     private bool isDead;
-
 
     void Start()
     {
@@ -16,20 +15,16 @@ public class Character : MonoBehaviour
 
     void Update()
     {
-       
-
-
-
+		takeDamage (0.001f);
     }
 
    
-
     public void Shoot(int dd)
     {
 
     }
 
-    public void takeDamage(int dmg)
+    public void takeDamage(float dmg)
     {
         this.health -= dmg;
         this.CheckIsDead();
