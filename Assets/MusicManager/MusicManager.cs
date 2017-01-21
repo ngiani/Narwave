@@ -63,24 +63,24 @@ public class MusicManager : MonoBehaviour {
 	{
 		if(beatTime >= ranges[2] && beatTime <= 1f)
 		{
-			Debug.Log("Perfect");
+			//Debug.Log("Perfect");
 			return RhythmState.perfect;
 		}
 
 		else if(beatTime >= ranges[1] && beatTime < ranges[2])
 		{
-			Debug.Log("Good");
+			//Debug.Log("Good");
 			return RhythmState.great;
 		}
 
 		else if(beatTime >= ranges[0] && beatTime < ranges[1])
 		{
-			Debug.Log("OK");
+			//Debug.Log("OK");
 			return RhythmState.ok;
 		}
 		else
 		{
-			Debug.Log("Awful");
+			//Debug.Log("Awful");
 			return RhythmState.awful;
 		}
 	}
@@ -99,7 +99,7 @@ public class MusicManager : MonoBehaviour {
 	{
 		numBeats++;
 		OnBeatPassed(new EventArgs());
-		Debug.Log(numBeats);
+		//Debug.Log(numBeats);
 
 		GameObject instance;
 		foreach(KeyValuePair<GameObject, Vector3> toInstantiate in listToInstantiate)

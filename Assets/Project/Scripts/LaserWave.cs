@@ -13,7 +13,7 @@ public class LaserWave : MonoBehaviour
         laserWaveRenderer = GetComponent<LaserWaveRenderer>();
         megalaser = GameObject.FindGameObjectWithTag("Megalaser").GetComponent<LaserWaveRenderer>();
 
-        if (megalaser.LineRenderer.enabled)
+        if (megalaser.LineRenderer && megalaser.LineRenderer.enabled)
             megalaser.LineRenderer.enabled = false;
     }
 

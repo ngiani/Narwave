@@ -10,13 +10,17 @@ public class MovementBulletC : MonoBehaviour
 
     void Start()
     {
-        pos = GameObject.Find("Spaceship").transform.position;
-        translation = (pos - transform.position).normalized;
+        translation = new Vector3(0f, 0f, 0f);
     }
 
     void Update()
     {
         //MOVIMENTO
         gameObject.transform.Translate(translation * speed * Time.deltaTime);
+    }
+
+    public void setTranslation (Vector3 v)
+    {
+        translation = v;
     }
 }
