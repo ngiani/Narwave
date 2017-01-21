@@ -4,43 +4,63 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    public int lives;
+    public int health;
     public int dmg;
     private bool isDead;
+
+    //private float timerSpawn;
 
     void Start()
     {
         isDead = false;
+
+        //timerSpawn = Time.time;
     }
 
     void Update()
     {
-        
+
+
+
+
+        //CONTROLLA SE SEI RICICLABILE
+        if (Utility.isRecyclable(this.gameObject.transform.position))
+            this.Death();
+
 
     }
 
-    public void Hitted(int dmg)
+    public void takeDamage(int dmg)
     {
-        this.lives -= dmg;
+        this.health -= dmg;
         this.CheckIsDead();
     }
 
     public void CheckIsDead()
     {
-        if (lives <= 0)
+        if (health <= 0)
         {
             isDead = true;
+            this.Death();
         }
     }
 
     public void Death()
     {
-        this.gameObject.SetActive(false);
+        this.gameObject.Recycle();
+
+        //this.gameObject.SetActive(false);
         //this.gameObject.Destroy
+        //Debug.Log("MORTO!!!");
+
     }
 
-
-
+    /*
+    void OnBecameInvisible()
+    {
+        this.Death();
+    }
+    */
 
 
 }

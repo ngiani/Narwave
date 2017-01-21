@@ -10,9 +10,13 @@ public class LevelManager : MonoBehaviour
     private float timerStart;
     private Vector3 spawnPoint1;
     private Vector3 spawnPoint2;
-    private Vector3 realSpawnPoint; 
+    private Vector3 realSpawnPoint;
 
-	void Start ()
+    //DEBUG
+    //bool bbb = true;
+    //FINE DEBUG
+
+    void Start ()
     {
         timerStart = Time.time;
         Camera camera = Camera.main;
@@ -23,24 +27,32 @@ public class LevelManager : MonoBehaviour
 	void Update ()
     {
 
-
-
-
+        
 
 
         //TEST SPAWN MOSTRI
         if (Time.time >= timerStart + timerSpawn)
         {
             float randomY = Random.Range(spawnPoint2.y, spawnPoint1.y);
-            realSpawnPoint = new Vector3(spawnPoint1.x, randomY, spawnPoint1.z);
+            realSpawnPoint = new Vector3(spawnPoint1.x, randomY, 0f);
             timerStart = Time.time;
             monsterA.Spawn(realSpawnPoint);
 
             
         }
-       
 
-
+        /*
+        //DEBUG
+        if (bbb)
+        {
+            bbb = false;
+            float randomYY = Random.Range(spawnPoint2.y, spawnPoint1.y);
+            realSpawnPoint = new Vector3(spawnPoint1.x, randomYY, 0f);
+            timerStart = Time.time;
+            monsterA.Spawn(realSpawnPoint); 
+        }
+        // FINE DEBUG
+        */
 
     }
 

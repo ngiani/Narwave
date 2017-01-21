@@ -6,13 +6,15 @@ public class Bullet : MonoBehaviour
 {
     public int dmg;
 
-	void Start ()
+   
+
+    void Start ()
     {
-		
+       
 	}
-	
-	void Update ()
+
+    void Update()
     {
-		
-	}
+        
+    }
 }

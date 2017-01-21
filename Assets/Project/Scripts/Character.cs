@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public int lives;
+    public int health;
     public int dmg;
     private bool isDead;
 
@@ -16,28 +16,28 @@ public class Character : MonoBehaviour
 
     void Update()
     {
-        //CONTROLLI
-        //...
-        //CONTROLLO CHE SPARA:
-        //this.Shoot(dmg);
+       
+
 
 
     }
+
+   
 
     public void Shoot(int dd)
     {
 
     }
 
-    public void Hitted(int dmg)
+    public void takeDamage(int dmg)
     {
-        this.lives -= dmg;
+        this.health -= dmg;
         this.CheckIsDead();
     }
 
     public void CheckIsDead()
     {
-        if (lives <= 0)
+        if (health <= 0)
         {
             isDead = true;
         }
