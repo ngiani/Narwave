@@ -49,6 +49,10 @@ public class Monster : MonoBehaviour
 
     public void Death()
     {
+        if (this.gameObject.tag == "MonsterC")
+        {
+            this.gameObject.GetComponent<AttackC>().Attack();
+        }
         this.gameObject.Recycle();
 
         //this.gameObject.SetActive(false);

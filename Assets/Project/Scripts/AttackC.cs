@@ -8,27 +8,46 @@ public class AttackC : MonoBehaviour
     public int bulletCount;
     private Monster bulletTmp;
     private float timerStart;
-    public float timerFire;
-    public float timerStopFire;
-    private float timerStopFireInt;
+    public float timerAutoDanno;
+    public int autoDanni;
+    public float scaleFactor;
+    private int startingHealth;
+    private float reverseHealth;
 
     void Start()
     {
         timerStart = Time.time;
-        timerStopFireInt = Time.time + timerStopFire;
+        startingHealth = gameObject.GetComponent<Monster>().health;
+        reverseHealth = 0;
+        //timerStopFireInt = Time.time + timerStopFire;
     }
 
     void Update()
     {
         
-        //SPARA
-        if (Time.time >= timerStart + timerFire && Time.time <= timerStopFireInt)
+        //SI FA DANNI DA SOLO
+        if (Time.time >= timerStart + timerAutoDanno)
         {
-            this.Attack();
             timerStart = Time.time;
+            this.AutoAttack();
         }
+
+        //SI INGRANDISCE AL DIMINUIRE DELLA VITA
+        reverseHealth = ((float)(startingHealth - gameObject.GetComponent<Monster>().health))/(startingHealth);
+        float tmp2 = reverseHealth * scaleFactor;
+        Debug.Log(gameObject.GetComponent<Monster>().health);
+        transform.localScale += new Vector3(tmp2, tmp2, tmp2);
         
-        
+
+       
+
+
+
+    }
+
+    public void AutoAttack ()
+    {
+        this.gameObject.GetComponent<Monster>().takeDamage(autoDanni);
     }
 
     public void Attack ()
