@@ -6,10 +6,15 @@ public class LaserWave : MonoBehaviour
     [SerializeField] private float waveHeight = 1;
 
     private LaserWaveRenderer laserWaveRenderer;
+    private LaserWaveRenderer megalaser;
 
     private void Start()
     {
         laserWaveRenderer = GetComponent<LaserWaveRenderer>();
+        megalaser = GameObject.FindGameObjectWithTag("Megalaser").GetComponent<LaserWaveRenderer>();
+
+        if (megalaser.LineRenderer.enabled)
+            megalaser.LineRenderer.enabled = false;
     }
 
     public void Fire()
@@ -18,11 +23,21 @@ public class LaserWave : MonoBehaviour
         if (Physics.SphereCast(transform.position, waveHeight / 2, transform.right, out hit))
         {
             laserWaveRenderer.Length = Vector3.Distance(transform.position, hit.point) / 2;
-            Debug.Log("transform.position: " + transform.position + "; hit.point: " + hit.point + "; distance: " + laserWaveRenderer.Length);
+            megalaser.transform.position = hit.point;
+            if (!megalaser.LineRenderer.enabled)
+            {
+                megalaser.LineRenderer.enabled = true;
+            }
+
+
+            megalaser.Height = waveHeight + hit.collider.GetComponent<LaserWave>().WaveHeight;
         }
-        else if (laserWaveRenderer.Length < 10f)
+        else
         {
-            //laserWaveRenderer.Length = 10f;
+            if (laserWaveRenderer.Length < 10f)
+                laserWaveRenderer.Length = 10f;
+            if (megalaser.LineRenderer.enabled)
+                megalaser.enabled = false;
         }
     }
 

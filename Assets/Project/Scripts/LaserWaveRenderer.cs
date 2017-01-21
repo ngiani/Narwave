@@ -73,4 +73,9 @@ public class LaserWaveRenderer : MonoBehaviour
             lineRenderer.widthMultiplier = height;
         }
     }
+
+    public LineRenderer LineRenderer
+    {
+        get { return lineRenderer; }
+    }
 }
