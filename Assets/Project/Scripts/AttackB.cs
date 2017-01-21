@@ -8,16 +8,18 @@ public class AttackB : MonoBehaviour
     private float timerStart;
     public float timerFire;
     public float timerStopFire;
+    private float timerStopFireInt;
 
     void Start ()
     {
         timerStart = Time.time;
+        timerStopFireInt = Time.time + timerStopFire;
     }
 
     void Update()
     {
         //SPARA
-        if (Time.time >= timerStart + timerFire && Time.time <= timerStopFire)
+        if (Time.time >= timerStart + timerFire && Time.time <= timerStopFireInt)
         {
             monsterBulletB.Spawn(transform.position + new Vector3(0.5f, 1.5f, 0f));
             timerStart = Time.time;
