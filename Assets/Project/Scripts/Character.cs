@@ -33,6 +33,7 @@ public class Character : MonoBehaviour
     {
         this.health -= dmg;
         this.CheckIsDead();
+        Debug.Log("VITA = "+health);
     }
 
     public void CheckIsDead()
