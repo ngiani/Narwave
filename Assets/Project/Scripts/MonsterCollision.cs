@@ -18,7 +18,7 @@ public class MonsterCollision : MonoBehaviour {
     {
         if (other.gameObject.tag == "PlayerCollider")
         {
-            this.transform.parent.GetComponent<Monster>().takeDamage(1000);
+            this.transform.parent.GetComponent<Monster>().takeDamage(100000);
             //Debug.Log("COLLISIONE!!!");
         }
     }

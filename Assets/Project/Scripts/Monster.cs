@@ -5,7 +5,8 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
     public int health;
-    public int dmg;
+    public int attackDmg;
+    public int physicalDmg;
     private bool isDead;
 
     //private float timerSpawn;
