@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Spaceship : MonoBehaviour
 {
@@ -12,6 +13,13 @@ public class Spaceship : MonoBehaviour
         laserWave = GetComponentInChildren<LaserWave>();
         laserWaveRenderer = GetComponentInChildren<LaserWaveRenderer>();
         musicManager = FindObjectOfType<MusicManager>();
+
+        Registry.musicManager.BeatPassed += MusicManager_BeatPassed;
+    }
+
+    private void MusicManager_BeatPassed(object sender, EventArgs e)
+    {
+		
     }
 
     private void Update()
