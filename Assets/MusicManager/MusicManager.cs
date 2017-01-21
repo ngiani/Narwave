@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class MusicManager : MonoBehaviour {
 
@@ -23,7 +24,7 @@ public class MusicManager : MonoBehaviour {
 
 	Dictionary<GameObject, Vector3> listToInstantiate;
 
-
+	public event EventHandler BeatPassed;
 	
 	void Awake()
 	{
@@ -97,6 +98,7 @@ public class MusicManager : MonoBehaviour {
 	private void SpawnList()
 	{
 		numBeats++;
+		OnBeatPassed(new EventArgs());
 		Debug.Log(numBeats);
 
 		GameObject instance;
@@ -115,5 +117,12 @@ public class MusicManager : MonoBehaviour {
 	{
 		SpawnList();
 
+	}
+
+	protected virtual void OnBeatPassed(EventArgs e)
+	{
+		EventHandler handler = BeatPassed;
+		if (handler != null)
+			handler(this, e);
 	}
 }
