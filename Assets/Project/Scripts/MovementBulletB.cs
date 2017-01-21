@@ -8,7 +8,7 @@ public class MovementBulletB : MonoBehaviour
     Vector3 pos;
     Vector3 translation;
 
-    void Start()
+    void OnEnable()
     {
         pos = GameObject.Find("Spaceship").transform.position;
         translation = (pos - transform.position).normalized;

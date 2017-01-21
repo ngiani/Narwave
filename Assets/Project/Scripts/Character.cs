@@ -7,6 +7,7 @@ public class Character : MonoBehaviour
     public float health;
     public float dmg;
 	public int points;
+	public int multiplier;
 
     private bool isDead;
 
@@ -18,7 +19,7 @@ public class Character : MonoBehaviour
 
     void Update()
     {
-		takeDamage (0.001f);
+		
     }
 
    
