@@ -1,28 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(LineRenderer))]
 public class LaserWave : MonoBehaviour
 {
-    /// <summary>
-    /// The number of complete texture offsets done in 1 second.
-    /// </summary>
-    public float moveFrequency = 10f;
+    public float waveHeight = 1;
 
-    private float currentTextureOffset = 0f;
-
-    private LineRenderer lineRenderer;
-    private Material material;
-
-    private void Start()
+    public void Fire()
     {
-        lineRenderer = GetComponent<LineRenderer>();
-        material = lineRenderer.material;
-    }
+        RaycastHit hit;
+        Physics.SphereCast(transform.position, waveHeight / 2, transform.right, out hit);
 
-    private void Update()
-    {
-        currentTextureOffset = (currentTextureOffset - moveFrequency * Time.deltaTime) % 1f;
-        material.mainTextureOffset = new Vector2(currentTextureOffset, 0f);
     }
 }
