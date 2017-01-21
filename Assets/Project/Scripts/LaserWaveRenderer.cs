@@ -4,11 +4,12 @@ using System.Collections;
 [RequireComponent(typeof(LineRenderer))]
 public class LaserWaveRenderer : MonoBehaviour
 {
+    [SerializeField] private float height = 1;
+    [SerializeField] private float length = 10f;
     /// <summary>
     /// The number of complete texture offsets done in 1 second.
     /// </summary>
     public float moveFrequency = 10f;
-    [SerializeField] private float length = 10f;
 
     private float currentTextureOffset = 0f;
 
@@ -19,6 +20,8 @@ public class LaserWaveRenderer : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         material = lineRenderer.material;
+        Length = length;
+        Height = height;
     }
 
     private void Update()
@@ -39,7 +42,10 @@ public class LaserWaveRenderer : MonoBehaviour
     private void OnValidate()
     {
         if (lineRenderer)
+        {
             Length = length;
+            Height = height;
+        }
     }
 
     /// <summary>
@@ -52,6 +58,19 @@ public class LaserWaveRenderer : MonoBehaviour
         {
             length = value;
             lineRenderer.SetPosition(1, new Vector3(length, 0f, 0f));
+        }
+    }
+
+    /// <summary>
+    /// The height of the rendered wave in meters.
+    /// </summary>
+    public float Height
+    {
+        get { return height; }
+        set
+        {
+            height = value;
+            lineRenderer.widthMultiplier = height;
         }
     }
 }

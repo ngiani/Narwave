@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LaserWave : MonoBehaviour
 {
-    public float waveHeight = 1;
+    [SerializeField] private float waveHeight = 1;
 
     private LaserWaveRenderer laserWaveRenderer;
 
@@ -24,5 +24,21 @@ public class LaserWave : MonoBehaviour
         {
             //laserWaveRenderer.Length = 10f;
         }
+    }
+
+    public float WaveHeight
+    {
+        get { return waveHeight; }
+        set
+        {
+            waveHeight = value;
+            if (laserWaveRenderer)
+                laserWaveRenderer.Height = waveHeight;
+        }
+    }
+
+    private void OnValidate()
+    {
+        WaveHeight = waveHeight;
     }
 }
