@@ -8,13 +8,13 @@ public class Spaceship : MonoBehaviour
 
     private void Start()
     {
-        laserWave = GetComponent<LaserWave>();
-        laserWaveRenderer = GetComponent<LaserWaveRenderer>();
+        laserWave = GetComponentInChildren<LaserWave>();
+        laserWaveRenderer = GetComponentInChildren<LaserWaveRenderer>();
     }
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Space))
+        if (true)//if (Input.GetKey(KeyCode.Space))
         {
             laserWave.Fire();
             laserWaveRenderer.SetVisible(true);

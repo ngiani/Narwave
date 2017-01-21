@@ -8,6 +8,7 @@ public class LaserWaveRenderer : MonoBehaviour
     /// The number of complete texture offsets done in 1 second.
     /// </summary>
     public float moveFrequency = 10f;
+    [SerializeField] private float length = 10f;
 
     private float currentTextureOffset = 0f;
 
@@ -33,5 +34,24 @@ public class LaserWaveRenderer : MonoBehaviour
     {
         if (lineRenderer.enabled != value)
             lineRenderer.enabled = value;
+    }
+
+    private void OnValidate()
+    {
+        if (lineRenderer)
+            Length = length;
+    }
+
+    /// <summary>
+    /// The length of the rendered wave in meters.
+    /// </summary>
+    public float Length
+    {
+        get { return length; }
+        set
+        {
+            length = value;
+            lineRenderer.SetPosition(1, new Vector3(length, 0f, 0f));
+        }
     }
 }
