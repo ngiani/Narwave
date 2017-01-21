@@ -29,7 +29,6 @@ public class LaserWave : MonoBehaviour
                 megalaser.LineRenderer.enabled = true;
             }
 
-
             megalaser.Height = waveHeight + hit.collider.GetComponent<LaserWave>().WaveHeight;
         }
         else
