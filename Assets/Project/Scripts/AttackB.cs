@@ -21,8 +21,8 @@ public class AttackB : MonoBehaviour
         //SPARA
         if (Time.time >= timerStart + timerFire && Time.time <= timerStopFireInt)
         {
-            monsterBulletB.Spawn(transform.position + new Vector3(0.5f, 1.5f, 0f));
             timerStart = Time.time;
+            monsterBulletB.Spawn(transform.position + new Vector3(0.5f, 1.5f, 0f));
         }
     }
 }
