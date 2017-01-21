@@ -7,6 +7,7 @@ public class Monster : MonoBehaviour
     public int health;
     public int attackDmg;
     public int physicalDmg;
+    public int pointValue;
     private bool isDead;
 
     //private float timerSpawn;

@@ -4,36 +4,34 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public int health;
-    public int dmg;
-    private bool isDead;
+    public float health;
+    public float dmg;
+	public int points;
 
+    private bool isDead;
 
     void Start()
     {
         isDead = false;
+        points = 0;
     }
 
     void Update()
     {
-       
-
-
-
+		takeDamage (0.001f);
     }
 
    
-
     public void Shoot(int dd)
     {
 
     }
 
-    public void takeDamage(int dmg)
+    public void takeDamage(float dmg)
     {
         this.health -= dmg;
         this.CheckIsDead();
-        Debug.Log("VITA = "+health);
+        //Debug.Log("VITA = "+health);
     }
 
     public void CheckIsDead()

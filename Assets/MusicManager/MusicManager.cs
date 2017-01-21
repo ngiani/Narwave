@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class MusicManager : MonoBehaviour {
 
@@ -12,6 +13,8 @@ public class MusicManager : MonoBehaviour {
 	public float bpm;
 	public float[] ranges;
 
+	public static int numBeats;
+
 	private float mTime;
 	private AudioSource audioSource;
 	private float bps;
@@ -21,7 +24,7 @@ public class MusicManager : MonoBehaviour {
 
 	Dictionary<GameObject, Vector3> listToInstantiate;
 
-
+	public event EventHandler BeatPassed;
 	
 	void Awake()
 	{
@@ -29,7 +32,7 @@ public class MusicManager : MonoBehaviour {
 		listToInstantiate = new Dictionary<GameObject, Vector3>();
 		audioSource = GetComponent<AudioSource>();
 		bps = 1/(bpm / 60f);
-		Debug.Log("bps = " + bps);
+
 
 	}
 	
@@ -94,7 +97,10 @@ public class MusicManager : MonoBehaviour {
 
 	private void SpawnList()
 	{
-		Debug.Log("Instantiate");
+		numBeats++;
+		OnBeatPassed(new EventArgs());
+		Debug.Log(numBeats);
+
 		GameObject instance;
 		foreach(KeyValuePair<GameObject, Vector3> toInstantiate in listToInstantiate)
 		{
@@ -103,7 +109,7 @@ public class MusicManager : MonoBehaviour {
 		listToInstantiate.Clear();
 
 
-		Invoke("CheckToInvoke", inverseBeatTime*bps + 0.02f);
+		Invoke("CheckToInvoke", inverseBeatTime*bps + 0.1f);
 
 	}
 
@@ -111,5 +117,12 @@ public class MusicManager : MonoBehaviour {
 	{
 		SpawnList();
 
+	}
+
+	protected virtual void OnBeatPassed(EventArgs e)
+	{
+		EventHandler handler = BeatPassed;
+		if (handler != null)
+			handler(this, e);
 	}
 }
