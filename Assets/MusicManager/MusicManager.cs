@@ -92,7 +92,7 @@ public class MusicManager : MonoBehaviour {
 		listToInstantiate.Add(toInstantiate, position);
 	}
 
-	public void SpawnList()
+	private void SpawnList()
 	{
 		Debug.Log("Instantiate");
 		GameObject instance;
