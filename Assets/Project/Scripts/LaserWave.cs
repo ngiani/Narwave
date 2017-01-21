@@ -20,7 +20,7 @@ public class LaserWave : MonoBehaviour
     public void Fire()
     {
         RaycastHit hit;
-        if (Physics.SphereCast(transform.position, waveHeight / 2, transform.right, out hit, 0f, LayerMask.GetMask("PlayerLasers")))
+        if (Physics.SphereCast(transform.position, waveHeight / 2, transform.right, out hit, 0f, LayerMask.GetMask("PlayerLasers", "Default")))
         {
             laserWaveRenderer.Length = Vector3.Distance(transform.position, hit.point) / 2;
             megalaser.transform.position = hit.point;
