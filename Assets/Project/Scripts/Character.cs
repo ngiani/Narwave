@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public float health;
+    public int health;
     public int attackDmg;
     public int physicalDmg;
     public int points;
 	private int multiplier;
     public int maxMultiplier = 4;
+	public int maxHealth;
 
     private bool isDead;
 
@@ -34,9 +35,9 @@ public class Character : MonoBehaviour
 
     }
 
-    public void takeDamage(float dmg)
+    public void takeDamage(int dmg)
     {
-        this.health -= dmg;
+		this.health -= dmg*multiplier;
         this.CheckIsDead();
         //Debug.Log("VITA = "+health);
     }

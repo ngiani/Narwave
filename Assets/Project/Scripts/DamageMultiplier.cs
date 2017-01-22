@@ -33,7 +33,7 @@ public class DamageMultiplier : MonoBehaviour {
 				transform.GetComponent<Image> ().sprite = sprites [3];
 				break;
 			default:
-				transform.GetComponent<Image> ().sprite = null;
+				transform.GetComponent<Image> ().sprite = sprites [4];
 				break;
 		}
 	}
