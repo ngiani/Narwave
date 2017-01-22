@@ -47,7 +47,16 @@ public class Character : MonoBehaviour
         if (health <= 0)
         {
             isDead = true;
+            GetComponentInChildren<Animator>().SetBool("Dead", true);
+            GetComponent<InputController>().enabled = false;
+            
         }
+    }
+
+    private IEnumerator PutAwayAfterSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        transform.position = new Vector3(0, -100f, 0);
     }
 
     public void Death()
