@@ -11,6 +11,7 @@ public class Spaceship : MonoBehaviour
 
     private LaserWave laserWave;
     private LaserWaveRenderer laserWaveRenderer;
+    private InputController inputController;
 
     public UnityEngine.UI.Text debugText;
 
@@ -18,6 +19,7 @@ public class Spaceship : MonoBehaviour
     {
         laserWave = GetComponentInChildren<LaserWave>();
         laserWaveRenderer = GetComponentInChildren<LaserWaveRenderer>();
+        inputController = GetComponent<InputController>();
 
         Registry.musicManager.BeatPassed += MusicManager_BeatPassed;
         Registry.musicManager.NearestBeatChanged += MusicManager_NearestBeatChanged;
@@ -39,7 +41,7 @@ public class Spaceship : MonoBehaviour
         if (debugText)
             debugText.text = MusicManager.numBeats + ". " + Registry.musicManager.CheckRhythm().ToString();
 
-        firePressed = Input.GetButtonDown("RightBumper");
+        firePressed = Input.GetButtonDown(inputController.fireButton);
 
         if ((!firePressed && canPress && MusicManager.numAvvallamenti >= lastPressedBeat + 1 && lastPressedBeat >= 0)  // Diminuire moltiplicatore di 1
             || firePressed && !canPress) //Reset Contatore moltiplicatore punteggio
