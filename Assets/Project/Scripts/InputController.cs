@@ -30,19 +30,19 @@ public class InputController : MonoBehaviour {
 
 		
 
-        Vector2 leftUp = Camera.main.ScreenToWorldPoint (new Vector2(0, 0));
-		if (Camera.main.WorldToScreenPoint(gameObject.transform.position).x <= 0){
-			transform.position = new Vector2(leftUp.x,transform.position.y);
-		}
+  //      Vector2 leftUp = Camera.main.ScreenToWorldPoint (new Vector2(0, 0));
+		//if (Camera.main.WorldToScreenPoint(gameObject.transform.position).x <= 0){
+		//	transform.position = new Vector2(leftUp.x,transform.position.y);
+		//}
 
-		if (Camera.main.WorldToScreenPoint(gameObject.transform.position).y <= 0){
-			transform.position = new Vector2(transform.position.x,leftUp.y);
-		}
+		//if (Camera.main.WorldToScreenPoint(gameObject.transform.position).y <= 0){
+		//	transform.position = new Vector2(transform.position.x,leftUp.y);
+		//}
 
-		Vector2 leftDown = Camera.main.ScreenToWorldPoint (new Vector2(0, Screen.height));
-		if (Camera.main.WorldToScreenPoint(gameObject.transform.position).y >= Screen.height){
-			transform.position = new Vector2(transform.position.x,leftDown.y);
-		}
+		//Vector2 leftDown = Camera.main.ScreenToWorldPoint (new Vector2(0, Screen.height));
+		//if (Camera.main.WorldToScreenPoint(gameObject.transform.position).y >= Screen.height){
+		//	transform.position = new Vector2(transform.position.x,leftDown.y);
+		//}
 			
 
         /*ROTAZIONE*/
