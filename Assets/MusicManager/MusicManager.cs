@@ -104,7 +104,7 @@ public class MusicManager : MonoBehaviour {
 		numBeats++;
 		Invoke("AddNumAvvallamenti", bps/2f);
 		OnBeatPassed(new EventArgs());
-		Debug.Log("numBeats = " + numBeats);
+		//Debug.Log("numBeats = " + numBeats);
 
 		GameObject instance;
 		foreach(KeyValuePair<GameObject, Vector3> toInstantiate in listToInstantiate)
@@ -143,7 +143,7 @@ public class MusicManager : MonoBehaviour {
 	{
 		numAvvallamenti++;
         OnNearestBeatChanged(new EventArgs());
-		Debug.Log("numAvvallamenti = " + numAvvallamenti);
+		//Debug.Log("numAvvallamenti = " + numAvvallamenti);
 	}
 
 
