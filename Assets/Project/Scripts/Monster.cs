@@ -53,12 +53,19 @@ public class Monster : MonoBehaviour
         {
             this.gameObject.GetComponent<AttackC>().Attack();
         }
-        this.gameObject.Recycle();
+        GetComponentInChildren<Animator>().SetBool("Dead", true);
+        StartCoroutine(RecycleAfterSeconds(1f));//this.gameObject.Recycle();
 
         //this.gameObject.SetActive(false);
         //this.gameObject.Destroy
         //Debug.Log("MORTO!!!");
 
+    }
+
+    private IEnumerator RecycleAfterSeconds(float s)
+    {
+        yield return new WaitForSeconds(s);
+        gameObject.Recycle();
     }
 
     /*
