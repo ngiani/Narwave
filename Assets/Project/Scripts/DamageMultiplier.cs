@@ -16,7 +16,7 @@ public class DamageMultiplier : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		int multiplier = player.GetComponent<Character> ().multiplier;
+		int multiplier = player.GetComponent<Character> ().Multiplier;
 
 		switch (multiplier) {
 

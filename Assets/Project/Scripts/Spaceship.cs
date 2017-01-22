@@ -4,6 +4,9 @@ using System;
 
 public class Spaceship : MonoBehaviour
 {
+    public int beatsPerCombo = 8;
+    private int currentCombo;
+
     private bool firePressed = false;
     private int lastPressedBeat = 0;
 
@@ -13,6 +16,7 @@ public class Spaceship : MonoBehaviour
     private LaserWaveRenderer laserWaveRenderer;
     private InputController inputController;
     private BoxCollider laserCollider;
+    private Character character;
 
     public UnityEngine.UI.Text debugText;
 
@@ -22,6 +26,7 @@ public class Spaceship : MonoBehaviour
         laserWaveRenderer = GetComponentInChildren<LaserWaveRenderer>();
         inputController = GetComponent<InputController>();
         laserCollider = laserWave.GetComponent<BoxCollider>();
+        character = GetComponent<Character>();
 
         Registry.musicManager.BeatPassed += MusicManager_BeatPassed;
         Registry.musicManager.NearestBeatChanged += MusicManager_NearestBeatChanged;
@@ -41,7 +46,7 @@ public class Spaceship : MonoBehaviour
     private void Update()
     {
         if (debugText)
-            debugText.text = MusicManager.numBeats + ". " + Registry.musicManager.CheckRhythm().ToString();
+            debugText.text = "Multiplier: " + character.Multiplier;
 
         firePressed = Input.GetButtonDown(inputController.fireButton);
 
@@ -64,6 +69,12 @@ public class Spaceship : MonoBehaviour
                 laserWaveRenderer.SetVisible(true);
                 laserCollider.enabled = true;
                 lastPressedBeat = GetNearestBeat();
+                currentCombo = (currentCombo + 1) % beatsPerCombo;
+                if (currentCombo == 0)
+                {
+                    // multiplier level up!
+                    character.Multiplier++;
+                }
             }
             else
             {

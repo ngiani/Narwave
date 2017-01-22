@@ -8,21 +8,26 @@ public class Character : MonoBehaviour
     public int attackDmg;
     public int physicalDmg;
     public int points;
-	public int multiplier;
+	private int multiplier;
+    public int maxMultiplier = 4;
 
     private bool isDead;
+
+    public int Multiplier
+    {
+        get { return multiplier; }
+        set
+        {
+            if (value <= maxMultiplier && value >= 0)
+                multiplier = value;
+        }
+    }
 
     void Start()
     {
         isDead = false;
         points = 0;
     }
-
-    void Update()
-    {
-		
-    }
-
    
     public void Shoot(int dd)
     {
