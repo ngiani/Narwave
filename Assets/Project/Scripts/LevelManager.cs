@@ -106,6 +106,7 @@ public class LevelManager : MonoBehaviour
             monsterD.Spawn(realSpawnPoint);
 
             timerStartD = Time.time;
+
         }
 
 
