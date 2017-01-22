@@ -10,7 +10,17 @@ public class MovementBulletB : MonoBehaviour
 
     void OnEnable()
     {
-        pos = GameObject.Find("Spaceship").transform.position;
+        string target;
+        float rnd = Random.Range(0f, 1.0f);
+        if (rnd <= 0.5f)
+        {
+            target = "Narvalo";
+        }
+        else
+        {
+            target = "Foca";
+        }
+        pos = GameObject.Find(target).transform.position;
         translation = (pos - transform.position).normalized;
     }
 

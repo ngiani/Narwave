@@ -8,10 +8,20 @@ public class MovementB : MonoBehaviour
     private float timerStart;
     public float timerStop; //dopo quanti secondi si ferma
     public float timerGo; //dopo quanti secondi, dopo essersi fermato, riparte
+    private string target;
 
     void Start()
     {
         timerStart = Time.time;
+        float rnd = Random.Range(0f,1.0f);
+        if (rnd <= 0.5f)
+        {
+            target = "Narvalo";
+        }
+        else
+        {
+            target = "Foca";
+        }
     }
 
     void Update()
@@ -25,7 +35,7 @@ public class MovementB : MonoBehaviour
         //MOVIMENTO VERTICALE
         else
         {
-            Vector3 pos = GameObject.Find("Spaceship").transform.position;
+            Vector3 pos = GameObject.Find(target).transform.position;
             Vector2 translation = Vector2.up;
             if (this.transform.position.y <= pos.y)
             {

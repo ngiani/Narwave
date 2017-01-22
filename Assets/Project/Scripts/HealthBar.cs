@@ -15,9 +15,11 @@ public class HealthBar : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		float health = player.gameObject.GetComponent<Character> ().health;
+		int health = player.gameObject.GetComponent<Character> ().health;
+		int maxHealth = player.gameObject.GetComponent<Character> ().maxHealth;
+		float barValue = (float)health / (float)maxHealth;
 
-		this.gameObject.GetComponent<Slider> ().value = health;
+		this.gameObject.GetComponent<Slider> ().value = barValue;
 
 	}
 }

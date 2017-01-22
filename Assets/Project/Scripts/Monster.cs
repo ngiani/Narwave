@@ -10,25 +10,31 @@ public class Monster : MonoBehaviour
     public int pointValue;
     private bool isDead;
 
+    //private float timerStart;
+    private float timerDeath;
+
     //private float timerSpawn;
 
     void Start()
     {
         isDead = false;
-
+        //timerStart = Time.time;
+        timerDeath = Time.time + 30f;
         //timerSpawn = Time.time;
     }
 
     void Update()
     {
-
-
-
-
         //CONTROLLA SE SEI RICICLABILE
+        if (Time.time >= timerDeath)
+        {
+            this.Death();
+        }
+
+        /*
         if (Utility.isRecyclable(this.gameObject.transform.position))
             this.Death();
-
+        */
 
     }
 
@@ -53,12 +59,19 @@ public class Monster : MonoBehaviour
         {
             this.gameObject.GetComponent<AttackC>().Attack();
         }
-        this.gameObject.Recycle();
+        GetComponentInChildren<Animator>().SetBool("Dead", true);
+        StartCoroutine(RecycleAfterSeconds(1f));//this.gameObject.Recycle();
 
         //this.gameObject.SetActive(false);
         //this.gameObject.Destroy
         //Debug.Log("MORTO!!!");
 
+    }
+
+    private IEnumerator RecycleAfterSeconds(float s)
+    {
+        yield return new WaitForSeconds(s);
+        gameObject.Recycle();
     }
 
     /*

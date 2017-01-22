@@ -32,8 +32,8 @@ public class LaserWave : MonoBehaviour
         }
         else
         {
-            if (laserWaveRenderer.Length < 20f)
-                laserWaveRenderer.Length = 20f;
+            if (laserWaveRenderer.Length < 50f)
+                laserWaveRenderer.Length = 50f;
         }
     }
 

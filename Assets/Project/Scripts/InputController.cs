@@ -14,8 +14,6 @@ public class InputController : MonoBehaviour {
 	public float rotation = 90.0f; //rotazione in gradi
     public Transform cannon;
 
-    public Transform minMovementLimit;
-    public Transform maxMovementLimit;
 
 	// Use this for initialization
 	void Start () {
@@ -32,33 +30,20 @@ public class InputController : MonoBehaviour {
 
 		
 
-        Vector2 leftUp = Camera.main.ScreenToWorldPoint (new Vector2(0, 0));
-		if (Camera.main.WorldToScreenPoint(gameObject.transform.position).x <= 0){
-			transform.position = new Vector2(leftUp.x,transform.position.y);
-		}
+  //      Vector2 leftUp = Camera.main.ScreenToWorldPoint (new Vector2(0, 0));
+		//if (Camera.main.WorldToScreenPoint(gameObject.transform.position).x <= 0){
+		//	transform.position = new Vector2(leftUp.x,transform.position.y);
+		//}
 
-		if (Camera.main.WorldToScreenPoint(gameObject.transform.position).y <= 0){
-			transform.position = new Vector2(transform.position.x,leftUp.y);
-		}
+		//if (Camera.main.WorldToScreenPoint(gameObject.transform.position).y <= 0){
+		//	transform.position = new Vector2(transform.position.x,leftUp.y);
+		//}
 
-		Vector2 leftDown = Camera.main.ScreenToWorldPoint (new Vector2(0, Screen.height));
-		if (Camera.main.WorldToScreenPoint(gameObject.transform.position).y >= Screen.height){
-			transform.position = new Vector2(transform.position.x,leftDown.y);
-		}
-
-        // limit movement
-        if (minMovementLimit && maxMovementLimit)
-        {
-            if (transform.position.x < minMovementLimit.position.x)
-                transform.position = new Vector2(minMovementLimit.position.x, transform.position.y);
-            else if (transform.position.x > maxMovementLimit.position.x)
-                transform.position = new Vector2(maxMovementLimit.position.x, transform.position.y);
-
-            if (transform.position.y < minMovementLimit.position.y)
-                transform.position = new Vector2(transform.position.x, minMovementLimit.position.y);
-            else if (transform.position.y > maxMovementLimit.position.y)
-                transform.position = new Vector2(transform.position.x, maxMovementLimit.position.y);
-        }
+		//Vector2 leftDown = Camera.main.ScreenToWorldPoint (new Vector2(0, Screen.height));
+		//if (Camera.main.WorldToScreenPoint(gameObject.transform.position).y >= Screen.height){
+		//	transform.position = new Vector2(transform.position.x,leftDown.y);
+		//}
+			
 
         /*ROTAZIONE*/
 
@@ -74,7 +59,7 @@ public class InputController : MonoBehaviour {
 		
 		cannon.rotation = Quaternion.AngleAxis (rotation, new Vector3(0,0,1));
 
-		//Debug.Log (rotation);
+
 					/*SPARO*/
 
 		//if (Input.GetButtonDown("LeftBumper"))

@@ -35,7 +35,7 @@ public class AttackC : MonoBehaviour
         //SI INGRANDISCE AL DIMINUIRE DELLA VITA
         reverseHealth = ((float)(startingHealth - gameObject.GetComponent<Monster>().health))/(startingHealth);
         float tmp2 = reverseHealth * scaleFactor;
-        Debug.Log(gameObject.GetComponent<Monster>().health);
+        //Debug.Log(gameObject.GetComponent<Monster>().health);
         transform.localScale += new Vector3(tmp2, tmp2, tmp2);
         
 

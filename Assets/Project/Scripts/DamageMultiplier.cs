@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class DamageMultiplier : MonoBehaviour {
 
 	public GameObject player;
-
+	public List<Sprite> sprites;
 
 	// Use this for initialization
 	void Start () {
@@ -16,30 +16,25 @@ public class DamageMultiplier : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		int multiplier = player.GetComponent<Character> ().multiplier;
+		int multiplier = player.GetComponent<Character> ().Multiplier;
 
 		switch (multiplier) {
 
-		case 1:
-			for (int i = 0; i < 1; i++)
-				transform.GetChild (i).gameObject.gameObject.GetComponent<Image> ().enabled = true;
+			case 1:
+				transform.GetComponent<Image> ().sprite = sprites [0];
 				break;
 			case 2:
-				for (int i = 0; i < 2; i++)
-					transform.GetChild (i).gameObject.gameObject.GetComponent<Image>().enabled = true;
+				transform.GetComponent<Image> ().sprite = sprites [1];
 				break;
 			case 3:
-				for (int i = 0; i < 3; i++)
-					transform.GetChild (i).gameObject.gameObject.GetComponent<Image>().enabled = true;
+				transform.GetComponent<Image> ().sprite = sprites [2];
 				break;
 			case 4:
-				for (int i = 0; i < 4; i++)
-					transform.GetChild (i).gameObject.gameObject.GetComponent<Image>().enabled = true;
+				transform.GetComponent<Image> ().sprite = sprites [3];
 				break;
 			default:
-				for (int i = 0; i < 4; i++)
-					transform.GetChild (i).gameObject.gameObject.GetComponent<Image>().enabled = true;
-					break;
+				transform.GetComponent<Image> ().sprite = sprites [4];
+				break;
 		}
 	}
 }
