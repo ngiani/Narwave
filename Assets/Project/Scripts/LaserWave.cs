@@ -20,16 +20,25 @@ public class LaserWave : MonoBehaviour
     public void Fire()
     {
         RaycastHit hit;
-        if (Physics.SphereCast(transform.position, waveHeight / 2, transform.right, out hit, 0f, LayerMask.GetMask("PlayerLasers", "Default")))
+        if (Physics.SphereCast(transform.position, waveHeight / 2, transform.right, out hit, 0f, 
+            LayerMask.GetMask("PlayerLasers", "Enemies")))
         {
-            laserWaveRenderer.Length = Vector3.Distance(transform.position, hit.point) / 2;
-            megalaser.transform.position = hit.point;
-            if (!megalaser.LineRenderer.enabled)
+            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("PlayerLasers"))
             {
-                megalaser.LineRenderer.enabled = true;
-            }
+                laserWaveRenderer.Length = Vector3.Distance(transform.position, hit.point) / 2;
+                megalaser.transform.position = hit.point;
+                if (!megalaser.LineRenderer.enabled)
+                {
+                    megalaser.LineRenderer.enabled = true;
+                }
 
-            megalaser.Height = waveHeight + hit.collider.GetComponent<LaserWave>().WaveHeight;
+                megalaser.Height = waveHeight + hit.collider.GetComponent<LaserWave>().WaveHeight;
+            }
+            //else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemies"))
+           
+
+
+            
         }
         else
         {

@@ -33,7 +33,7 @@ public class Spaceship : MonoBehaviour
         if (debugText)
             debugText.text = MusicManager.numBeats + ". " + Registry.musicManager.CheckRhythm().ToString();
 
-        firePressed = Input.GetKeyDown(KeyCode.Space);
+        firePressed = Input.GetButtonDown("RightBumper");
 
         if ((!firePressed && canPress && MusicManager.numAvvallamenti >= lastPressedBeat + 1 && lastPressedBeat >= 0)  // Diminuire moltiplicatore di 1
             || firePressed && !canPress) //Reset Contatore moltiplicatore punteggio

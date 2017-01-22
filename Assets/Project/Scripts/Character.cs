@@ -5,8 +5,9 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public float health;
-    public float dmg;
-	public int points;
+    public int attackDmg;
+    public int physicalDmg;
+    public int points;
 	public int multiplier;
 
     private bool isDead;
