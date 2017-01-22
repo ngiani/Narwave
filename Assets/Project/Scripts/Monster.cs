@@ -10,25 +10,31 @@ public class Monster : MonoBehaviour
     public int pointValue;
     private bool isDead;
 
+    //private float timerStart;
+    private float timerDeath;
+
     //private float timerSpawn;
 
     void Start()
     {
         isDead = false;
-
+        //timerStart = Time.time;
+        timerDeath = Time.time + 30f;
         //timerSpawn = Time.time;
     }
 
     void Update()
     {
-
-
-
-
         //CONTROLLA SE SEI RICICLABILE
+        if (Time.time >= timerDeath)
+        {
+            this.Death();
+        }
+
+        /*
         if (Utility.isRecyclable(this.gameObject.transform.position))
             this.Death();
-
+        */
 
     }
 
