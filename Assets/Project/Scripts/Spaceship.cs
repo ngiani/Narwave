@@ -12,6 +12,7 @@ public class Spaceship : MonoBehaviour
     private LaserWave laserWave;
     private LaserWaveRenderer laserWaveRenderer;
     private InputController inputController;
+    private BoxCollider laserCollider;
 
     public UnityEngine.UI.Text debugText;
 
@@ -20,6 +21,7 @@ public class Spaceship : MonoBehaviour
         laserWave = GetComponentInChildren<LaserWave>();
         laserWaveRenderer = GetComponentInChildren<LaserWaveRenderer>();
         inputController = GetComponent<InputController>();
+        laserCollider = laserWave.GetComponent<BoxCollider>();
 
         Registry.musicManager.BeatPassed += MusicManager_BeatPassed;
         Registry.musicManager.NearestBeatChanged += MusicManager_NearestBeatChanged;
@@ -47,6 +49,7 @@ public class Spaceship : MonoBehaviour
             || firePressed && !canPress) //Reset Contatore moltiplicatore punteggio
         {
             laserWaveRenderer.SetVisible(false);
+            laserCollider.enabled = false;
             lastPressedBeat = -1;
            
         }
@@ -59,6 +62,7 @@ public class Spaceship : MonoBehaviour
             {
                 laserWave.Fire();
                 laserWaveRenderer.SetVisible(true);
+                laserCollider.enabled = true;
                 lastPressedBeat = GetNearestBeat();
             }
             else
