@@ -20,7 +20,7 @@ public class LaserWave : MonoBehaviour
     public void Fire()
     {
         RaycastHit hit;
-        if (Physics.SphereCast(transform.position, waveHeight / 2, transform.right, out hit, 0f, 
+        if (Physics.SphereCast(transform.position, waveHeight / 2, transform.right, out hit, 100f, 
             LayerMask.GetMask("PlayerLasers", "Enemies")))
         {
             if (hit.collider.gameObject.layer == LayerMask.NameToLayer("PlayerLasers"))

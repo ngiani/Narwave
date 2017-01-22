@@ -5,7 +5,11 @@ using UnityEngine;
 public class InputController : MonoBehaviour {
 
 	public float speed = 1.0f;//velocità
-	float rotation = 90.0f; //rotazione in gradi
+	public float rotation = 90.0f; //rotazione in gradi
+    public Transform cannon;
+
+    public Transform minMovementLimit;
+    public Transform maxMovementLimit;
 
 	// Use this for initialization
 	void Start () {
@@ -20,11 +24,9 @@ public class InputController : MonoBehaviour {
 		Vector2 translation = new Vector2 (Input.GetAxis ("JoyHorizontal"), Input.GetAxis("JoyVertical"));
 		gameObject.transform.Translate (translation * speed * Time.deltaTime);
 
-		//Non può superare le metà della schermo
-		if (Camera.main.WorldToScreenPoint(gameObject.transform.position).x >= Screen.width / 2)
-			transform.position = new Vector2(0,transform.position.y);
+		
 
-		Vector2 leftUp = Camera.main.ScreenToWorldPoint (new Vector2(0, 0));
+        Vector2 leftUp = Camera.main.ScreenToWorldPoint (new Vector2(0, 0));
 		if (Camera.main.WorldToScreenPoint(gameObject.transform.position).x <= 0){
 			transform.position = new Vector2(leftUp.x,transform.position.y);
 		}
@@ -38,21 +40,33 @@ public class InputController : MonoBehaviour {
 			transform.position = new Vector2(transform.position.x,leftDown.y);
 		}
 
+        // limit movement
+        if (transform.position.x < minMovementLimit.position.x)
+            transform.position = new Vector2(minMovementLimit.position.x, transform.position.y);
+        else if (transform.position.x > maxMovementLimit.position.x)
+            transform.position = new Vector2(maxMovementLimit.position.x, transform.position.y);
 
-					/*ROTAZIONE*/
+        if (transform.position.y < minMovementLimit.position.y)
+            transform.position = new Vector2(transform.position.x, minMovementLimit.position.y);
+        else if (transform.position.y > maxMovementLimit.position.y)
+            transform.position = new Vector2(transform.position.x, maxMovementLimit.position.y);
 
-		float axisFive = Input.GetAxis ("AxisFive");
+
+        /*ROTAZIONE*/
+
+        float axisFive = Input.GetAxis ("AxisFive");
 		float axisFour = Input.GetAxis ("AxisFour");
 
-		//Angolo di rotazione è l'arcoseno del valore restituito dal quinto asse, convertito in gradi
-		if  (axisFour >= 0)
-			rotation = Mathf.Acos(-axisFive) * (180 / Mathf.PI);
-		if (axisFour < 0)
-			rotation = -Mathf.Acos (-axisFive) * (180 / Mathf.PI);
+		//Angolo di rotazione è l'arcotangente del valore restituito dal quinto asse, convertito in gradi
 
-		transform.GetChild(0).rotation = Quaternion.AngleAxis (rotation, new Vector3(0,0,1));
-	
+		if (axisFour != 0.0f || axisFive != 0.0f) {
+			rotation = (Mathf.Atan2 (axisFive, axisFour) * Mathf.Rad2Deg);
+			// Do something with the angle here.
+		} 
+		
+		cannon.rotation = Quaternion.AngleAxis (rotation, new Vector3(0,0,1));
 
+		//Debug.Log (rotation);
 					/*SPARO*/
 
 		if (Input.GetButtonDown("LeftBumper"))

@@ -26,6 +26,7 @@ public class MusicManager : MonoBehaviour {
 	Dictionary<GameObject, Vector3> listToInstantiate;
 
 	public event EventHandler BeatPassed;
+    public event EventHandler NearestBeatChanged;
 	
 	void Awake()
 	{
@@ -130,10 +131,18 @@ public class MusicManager : MonoBehaviour {
 			handler(this, e);
 	}
 
-	private void AddNumAvvallamenti()
+    protected virtual void OnNearestBeatChanged(EventArgs e)
+    {
+        EventHandler handler = NearestBeatChanged;
+        if (handler != null)
+            handler(this, e);
+    }
+
+
+    private void AddNumAvvallamenti()
 	{
 		numAvvallamenti++;
-        Spaceship.canPress = true;
+        OnNearestBeatChanged(new EventArgs());
 		Debug.Log("numAvvallamenti = " + numAvvallamenti);
 	}
 
