@@ -35,11 +35,12 @@ public class Spaceship : MonoBehaviour
 
         firePressed = Input.GetKeyDown(KeyCode.Space);
 
-        if (!firePressed && canPress && MusicManager.numAvvallamenti >= lastPressedBeat + 1 && lastPressedBeat >= 0)
+        if ((!firePressed && canPress && MusicManager.numAvvallamenti >= lastPressedBeat + 1 && lastPressedBeat >= 0)  // Diminuire moltiplicatore di 1
+            || firePressed && !canPress) //Reset Contatore moltiplicatore punteggio
         {
             laserWaveRenderer.SetVisible(false);
             lastPressedBeat = -1;
-            // TODO: decrease multiplicator counter level of 1
+           
         }
 
         if (firePressed && canPress)
