@@ -6,12 +6,12 @@ public class LaserWave : MonoBehaviour
     [SerializeField] private float waveHeight = 1;
 
     private LaserWaveRenderer laserWaveRenderer;
-    private LaserWaveRenderer megalaser;
+    private Megalaser megalaser;
 
     private void Start()
     {
         laserWaveRenderer = GetComponent<LaserWaveRenderer>();
-        megalaser = GameObject.FindGameObjectWithTag("Megalaser").GetComponent<LaserWaveRenderer>();
+        megalaser = GameObject.FindGameObjectWithTag("Megalaser").GetComponent<Megalaser>();
 
         if (megalaser.LineRenderer && megalaser.LineRenderer.enabled)
             megalaser.LineRenderer.enabled = false;
@@ -21,31 +21,19 @@ public class LaserWave : MonoBehaviour
     {
         RaycastHit hit;
         if (Physics.SphereCast(transform.position, waveHeight / 2, transform.right, out hit, 100f, 
-            LayerMask.GetMask("PlayerLasers", "Enemies")))
+            LayerMask.GetMask("PlayerLasers")))
         {
-            if (hit.collider.gameObject.layer == LayerMask.NameToLayer("PlayerLasers"))
-            {
-                laserWaveRenderer.Length = Vector3.Distance(transform.position, hit.point) / 2;
-                megalaser.transform.position = hit.point;
-                if (!megalaser.LineRenderer.enabled)
-                {
-                    megalaser.LineRenderer.enabled = true;
-                }
+            laserWaveRenderer.Length = Vector3.Distance(transform.position, hit.point);
+            megalaser.transform.position = hit.point;
+            megalaser.Show();
 
-                megalaser.Height = waveHeight + hit.collider.GetComponent<LaserWave>().WaveHeight;
-            }
-            //else if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemies"))
-           
-
-
+            megalaser.Height = waveHeight + hit.collider.GetComponent<LaserWave>().WaveHeight;
             
         }
         else
         {
-            if (laserWaveRenderer.Length < 10f)
-                laserWaveRenderer.Length = 10f;
-            if (megalaser.LineRenderer.enabled)
-                megalaser.enabled = false;
+            if (laserWaveRenderer.Length < 20f)
+                laserWaveRenderer.Length = 20f;
         }
     }
 
