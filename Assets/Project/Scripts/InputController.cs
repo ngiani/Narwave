@@ -60,7 +60,7 @@ public class InputController : MonoBehaviour {
 		//Angolo di rotazione è l'arcotangente del valore restituito dal quinto asse, convertito in gradi
 
 		if (axisFour != 0.0f || axisFive != 0.0f) {
-			rotation = (Mathf.Atan2 (axisFive, axisFour) * Mathf.Rad2Deg) + 90.0f;
+			rotation = (Mathf.Atan2 (axisFive, axisFour) * Mathf.Rad2Deg);
 			// Do something with the angle here.
 		} 
 		
