@@ -43,24 +43,7 @@ public class InputController : MonoBehaviour {
 		if (Camera.main.WorldToScreenPoint(gameObject.transform.position).y >= Screen.height){
 			transform.position = new Vector2(transform.position.x,leftDown.y);
 		}
-
-<<<<<<< HEAD
-
-=======
-        // limit movement
-        if (minMovementLimit && maxMovementLimit)
-        {
-            if (transform.position.x < minMovementLimit.position.x)
-                transform.position = new Vector2(minMovementLimit.position.x, transform.position.y);
-            else if (transform.position.x > maxMovementLimit.position.x)
-                transform.position = new Vector2(maxMovementLimit.position.x, transform.position.y);
-
-            if (transform.position.y < minMovementLimit.position.y)
-                transform.position = new Vector2(transform.position.x, minMovementLimit.position.y);
-            else if (transform.position.y > maxMovementLimit.position.y)
-                transform.position = new Vector2(transform.position.x, maxMovementLimit.position.y);
-        }
->>>>>>> 250da0971e988e12f91593d68e39380c84201f28
+			
 
         /*ROTAZIONE*/
 
