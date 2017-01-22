@@ -16,6 +16,6 @@ public class Score : MonoBehaviour {
 
 		int score = player.GetComponent<Character> ().points;
 
-		this.GetComponent<Text> ().text = "Score: " + score;
+		this.transform.GetChild(0).GetComponent<Text> ().text = score.ToString();
 	}
 }
