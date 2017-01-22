@@ -13,12 +13,13 @@ public class MusicManager : MonoBehaviour {
 	public float bpm;
 	public float[] ranges;
 
-	public static int numBeats;
+	public static int numBeats, numAvvallamenti;
 
 	private float mTime;
 	private AudioSource audioSource;
 	private float bps;
 	private float beatTime;
+	private float periodo;
 	private float inverseBeatTime;
 	private bool canInstantiate = true;
 
@@ -32,6 +33,7 @@ public class MusicManager : MonoBehaviour {
 		listToInstantiate = new Dictionary<GameObject, Vector3>();
 		audioSource = GetComponent<AudioSource>();
 		bps = 1/(bpm / 60f);
+		numAvvallamenti = 0;
 
 
 	}
@@ -46,6 +48,7 @@ public class MusicManager : MonoBehaviour {
 	void Update () {
 		mTime = audioSource.time;
 		beatTime = (mTime % bps)/(bps);
+
 		inverseBeatTime = 1 - beatTime;
 		beatTime = Mathf.Max(beatTime, inverseBeatTime);
 		beatTime = (beatTime - (0.5f))/0.5f;
@@ -98,8 +101,9 @@ public class MusicManager : MonoBehaviour {
 	private void SpawnList()
 	{
 		numBeats++;
+		Invoke("AddNumAvvallamenti", bps/2f);
 		OnBeatPassed(new EventArgs());
-		//Debug.Log(numBeats);
+		Debug.Log("numBeats = " + numBeats);
 
 		GameObject instance;
 		foreach(KeyValuePair<GameObject, Vector3> toInstantiate in listToInstantiate)
@@ -125,4 +129,12 @@ public class MusicManager : MonoBehaviour {
 		if (handler != null)
 			handler(this, e);
 	}
+
+	private void AddNumAvvallamenti()
+	{
+		numAvvallamenti++;
+		Debug.Log("numAvvallamenti = " + numAvvallamenti);
+	}
+
+
 }
