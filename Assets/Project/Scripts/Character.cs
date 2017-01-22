@@ -49,7 +49,8 @@ public class Character : MonoBehaviour
             isDead = true;
             GetComponentInChildren<Animator>().SetBool("Dead", true);
             GetComponent<InputController>().enabled = false;
-            
+            GetComponentInChildren<LaserWave>().enabled = false;
+            GetComponent<Spaceship>().enabled = false;
         }
     }
 
