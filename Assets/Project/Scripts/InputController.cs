@@ -3,8 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InputController : MonoBehaviour {
+    public string moveHorizontalAxis = "JoyHorizontal";
+    public string moveVerticalAxis = "JoyVertical";
+    public string aimHorizontalAxis = "AxisFour";
+    public string aimVerticalAxis = "AxisFive";
+    public string fireButton = "RightBumper";
 
-	public float speed = 1.0f;//velocità
+
+    public float speed = 1.0f;//velocità
 	public float rotation = 90.0f; //rotazione in gradi
     public Transform cannon;
 
@@ -21,7 +27,7 @@ public class InputController : MonoBehaviour {
 
 							/*MOVIMENTO*/
 
-		Vector2 translation = new Vector2 (Input.GetAxis ("JoyHorizontal"), Input.GetAxis("JoyVertical"));
+		Vector2 translation = new Vector2 (Input.GetAxis (moveHorizontalAxis), Input.GetAxis(moveVerticalAxis));
 		gameObject.transform.Translate (translation * speed * Time.deltaTime);
 
 		
@@ -56,8 +62,8 @@ public class InputController : MonoBehaviour {
 
         /*ROTAZIONE*/
 
-        float axisFive = Input.GetAxis ("AxisFive");
-		float axisFour = Input.GetAxis ("AxisFour");
+        float axisFive = Input.GetAxis (aimVerticalAxis);
+		float axisFour = Input.GetAxis (aimHorizontalAxis);
 
 		//Angolo di rotazione è l'arcotangente del valore restituito dal quinto asse, convertito in gradi
 
@@ -71,15 +77,15 @@ public class InputController : MonoBehaviour {
 		//Debug.Log (rotation);
 					/*SPARO*/
 
-		if (Input.GetButtonDown("LeftBumper"))
-			Debug.Log ("Left Bumper");
-		if (Input.GetButtonDown("RightBumper"))
-			Debug.Log ("Right Bumper");
+		//if (Input.GetButtonDown("LeftBumper"))
+		//	Debug.Log ("Left Bumper");
+		//if (Input.GetButtonDown("RightBumper"))
+		//	Debug.Log ("Right Bumper");
 
-		if (Input.GetAxis("LeftTrigger") > 0)
-			Debug.Log("Left Trigger");
-		if (Input.GetAxis ("RightTrigger") > 0)
-			Debug.Log ("Right Trigger");
+		//if (Input.GetAxis("LeftTrigger") > 0)
+		//	Debug.Log("Left Trigger");
+		//if (Input.GetAxis ("RightTrigger") > 0)
+		//	Debug.Log ("Right Trigger");
 	
 	}
 }
