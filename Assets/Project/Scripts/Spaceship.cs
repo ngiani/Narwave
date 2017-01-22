@@ -5,8 +5,9 @@ using System;
 public class Spaceship : MonoBehaviour
 {
     private bool firePressed = false;
-    private int beat = 1;
     private int lastPressedBeat = 0;
+
+    public static bool canPress = true;  
 
     private LaserWave laserWave;
     private LaserWaveRenderer laserWaveRenderer;
@@ -23,32 +24,46 @@ public class Spaceship : MonoBehaviour
 
     private void MusicManager_BeatPassed(object sender, EventArgs e)
     {
-        beat++;
-        if (!firePressed)
-        {
-            laserWaveRenderer.SetVisible(false);
-            // TODO: decrease multiplicator counter level of 1
-        }
+        //beat++;
+        
     }
 
     private void Update()
     {
         if (debugText)
-            debugText.text = beat + ". " + Registry.musicManager.CheckRhythm().ToString();
+            debugText.text = MusicManager.numBeats + ". " + Registry.musicManager.CheckRhythm().ToString();
 
         firePressed = Input.GetKeyDown(KeyCode.Space);
-        if (firePressed)
+
+        if (!firePressed && canPress && MusicManager.numAvvallamenti >= lastPressedBeat + 1 && lastPressedBeat >= 0)
         {
-            if (Registry.musicManager.CheckRhythm() != RhythmState.awful && lastPressedBeat != beat)
+            laserWaveRenderer.SetVisible(false);
+            lastPressedBeat = -1;
+            // TODO: decrease multiplicator counter level of 1
+        }
+
+        if (firePressed && canPress)
+        {
+            canPress = false;
+            lastPressedBeat = GetNearestBeat();
+            if (Registry.musicManager.CheckRhythm() != RhythmState.awful)
             {
                 laserWave.Fire();
                 laserWaveRenderer.SetVisible(true);
-                lastPressedBeat = beat;
+                lastPressedBeat = GetNearestBeat();
             }
             else
             {
                 // TODO: reset multiplicator counter
             }
         }
+    }
+
+    private int GetNearestBeat()
+    {
+        if (MusicManager.numBeats > MusicManager.numAvvallamenti)
+            return MusicManager.numBeats;
+        else
+            return MusicManager.numBeats - 1;
     }
 }

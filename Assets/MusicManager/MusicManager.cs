@@ -133,6 +133,7 @@ public class MusicManager : MonoBehaviour {
 	private void AddNumAvvallamenti()
 	{
 		numAvvallamenti++;
+        Spaceship.canPress = true;
 		Debug.Log("numAvvallamenti = " + numAvvallamenti);
 	}
 
