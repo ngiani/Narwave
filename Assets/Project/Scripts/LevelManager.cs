@@ -66,7 +66,10 @@ public class LevelManager : MonoBehaviour
         }
 
         // SPAWNA MOSTRI B
-        if (Time.time >= timerStartB + timerSpawnB && Time.time >= timerWave)
+        if ( Time.time >= timerStartB + timerSpawnB && 
+            ((Time.time >= timerWave && Time.time < timerWave*2) || 
+            (Time.time >= timerWave*4 && Time.time < timerWave * 6) ||
+            (Time.time >= timerWave * 7)))
         {
             float randomY = Random.Range(spawnPoint2.y, spawnPoint1.y);
             realSpawnPoint = new Vector3(spawnPoint1.x, randomY, 0f);
@@ -76,7 +79,10 @@ public class LevelManager : MonoBehaviour
         }
 
         // SPAWNA MOSTRI C
-        if (Time.time >= timerStartC + timerSpawnC && Time.time >= timerWave*2)
+        if (Time.time >= timerStartC + timerSpawnC && 
+            ((Time.time >= timerWave*2 && Time.time < timerWave*3) || 
+            (Time.time >= timerWave*4 && Time.time < timerWave * 5) || 
+            (Time.time >= timerWave * 6)))
         {
             float randomY = Random.Range(spawnPoint2.y, spawnPoint1.y);
             realSpawnPoint = new Vector3(spawnPoint1.x, randomY, 0f);
@@ -86,7 +92,9 @@ public class LevelManager : MonoBehaviour
         }
 
         // SPAWNA MOSTRI D
-        if (Time.time >= timerStartD + timerSpawnD && Time.time >= timerWave*3)
+        if (Time.time >= timerStartD + timerSpawnD && 
+            ((Time.time >= timerWave*3 && Time.time < timerWave*4) || 
+            (Time.time >= timerWave * 5)))
         {
             float randomY = Random.Range(spawnPoint2.y, spawnPoint1.y);
             realSpawnPoint = new Vector3(spawnPoint1.x, randomY, 0f);
