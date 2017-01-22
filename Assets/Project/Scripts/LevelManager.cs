@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
     public Monster monsterA;
     public Monster monsterB;
     public Monster monsterC;
+    public Monster monsterD;
     //public Vector3 spawnPoint;
     private float timerStart;
     private Vector3 spawnPoint1;
@@ -37,7 +38,7 @@ public class LevelManager : MonoBehaviour
         {
             float randomY = Random.Range(spawnPoint2.y, spawnPoint1.y);
             realSpawnPoint = new Vector3(spawnPoint1.x, randomY, 0f);
-            monsterC.Spawn(realSpawnPoint);
+            monsterD.Spawn(realSpawnPoint);
 
             timerStart = Time.time;
         }
