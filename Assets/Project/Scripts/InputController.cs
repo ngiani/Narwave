@@ -8,8 +8,6 @@ public class InputController : MonoBehaviour {
 	public float rotation = 90.0f; //rotazione in gradi
     public Transform cannon;
 
-    public Transform minMovementLimit;
-    public Transform maxMovementLimit;
 
 	// Use this for initialization
 	void Start () {
@@ -40,16 +38,6 @@ public class InputController : MonoBehaviour {
 			transform.position = new Vector2(transform.position.x,leftDown.y);
 		}
 
-        // limit movement
-        if (transform.position.x < minMovementLimit.position.x)
-            transform.position = new Vector2(minMovementLimit.position.x, transform.position.y);
-        else if (transform.position.x > maxMovementLimit.position.x)
-            transform.position = new Vector2(maxMovementLimit.position.x, transform.position.y);
-
-        if (transform.position.y < minMovementLimit.position.y)
-            transform.position = new Vector2(transform.position.x, minMovementLimit.position.y);
-        else if (transform.position.y > maxMovementLimit.position.y)
-            transform.position = new Vector2(transform.position.x, maxMovementLimit.position.y);
 
 
         /*ROTAZIONE*/
@@ -66,7 +54,7 @@ public class InputController : MonoBehaviour {
 		
 		cannon.rotation = Quaternion.AngleAxis (rotation, new Vector3(0,0,1));
 
-		//Debug.Log (rotation);
+
 					/*SPARO*/
 
 		if (Input.GetButtonDown("LeftBumper"))
