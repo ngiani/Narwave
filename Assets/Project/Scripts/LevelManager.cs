@@ -8,8 +8,10 @@ public class LevelManager : MonoBehaviour
     public Monster monsterB;
     public Monster monsterC;
     public Monster monsterD;
-    private Vector3 spawnPoint1;
-    private Vector3 spawnPoint2;
+    //public Transform spawn1;
+    //public Transform spawn2;
+    public Vector3 spawnPoint1;
+    public Vector3 spawnPoint2;
     private Vector3 realSpawnPoint;
     //public Vector3 spawnPoint;
 
@@ -44,9 +46,12 @@ public class LevelManager : MonoBehaviour
         timerSpawnB = timerSpawn*3;
         timerSpawnC = timerSpawn*3;
         timerSpawnD = timerSpawn*3;
-        Camera camera = Camera.main;
-        spawnPoint1 = camera.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 0f));
-        spawnPoint2 = camera.ScreenToWorldPoint(new Vector3(Screen.width, 0f, 0f));
+
+        //spawnPoint2 = spawn1.position;
+        //spawnPoint2 = spawn1.position;
+        //Camera camera = Camera.main;
+        //spawnPoint1 = camera.ScreenToWorldPoint(new Vector3(camera.pixelWidth, camera.pixelHeight, 0f));
+        //spawnPoint2 = camera.ScreenToWorldPoint(new Vector3(camera.pixelWidth, 0f, 0f));
 
         //timerStartWave = Time.time;
         //wave = 1;
