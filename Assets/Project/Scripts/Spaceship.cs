@@ -7,7 +7,7 @@ public class Spaceship : MonoBehaviour
     private bool firePressed = false;
     private int lastPressedBeat = 0;
 
-    public static bool canPress = true;  
+    private bool canPress = true;  
 
     private LaserWave laserWave;
     private LaserWaveRenderer laserWaveRenderer;
@@ -20,6 +20,12 @@ public class Spaceship : MonoBehaviour
         laserWaveRenderer = GetComponentInChildren<LaserWaveRenderer>();
 
         Registry.musicManager.BeatPassed += MusicManager_BeatPassed;
+        Registry.musicManager.NearestBeatChanged += MusicManager_NearestBeatChanged;
+    }
+
+    private void MusicManager_NearestBeatChanged(object sender, EventArgs e)
+    {
+        canPress = true;
     }
 
     private void MusicManager_BeatPassed(object sender, EventArgs e)
