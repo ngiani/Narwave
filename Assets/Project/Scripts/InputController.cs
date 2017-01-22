@@ -41,16 +41,18 @@ public class InputController : MonoBehaviour {
 		}
 
         // limit movement
-        if (transform.position.x < minMovementLimit.position.x)
-            transform.position = new Vector2(minMovementLimit.position.x, transform.position.y);
-        else if (transform.position.x > maxMovementLimit.position.x)
-            transform.position = new Vector2(maxMovementLimit.position.x, transform.position.y);
+        if (minMovementLimit && maxMovementLimit)
+        {
+            if (transform.position.x < minMovementLimit.position.x)
+                transform.position = new Vector2(minMovementLimit.position.x, transform.position.y);
+            else if (transform.position.x > maxMovementLimit.position.x)
+                transform.position = new Vector2(maxMovementLimit.position.x, transform.position.y);
 
-        if (transform.position.y < minMovementLimit.position.y)
-            transform.position = new Vector2(transform.position.x, minMovementLimit.position.y);
-        else if (transform.position.y > maxMovementLimit.position.y)
-            transform.position = new Vector2(transform.position.x, maxMovementLimit.position.y);
-
+            if (transform.position.y < minMovementLimit.position.y)
+                transform.position = new Vector2(transform.position.x, minMovementLimit.position.y);
+            else if (transform.position.y > maxMovementLimit.position.y)
+                transform.position = new Vector2(transform.position.x, maxMovementLimit.position.y);
+        }
 
         /*ROTAZIONE*/
 

@@ -19,7 +19,7 @@ public class Megalaser : MonoBehaviour
     {
         if (showTime <= 0f)
         {
-            showTime = 1f;
+            showTime = 0.5f;
             lineRenderer.enabled = true;
         }
     }
