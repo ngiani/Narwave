@@ -6,6 +6,7 @@ public class InputController : MonoBehaviour {
 
 	public float speed = 1.0f;//velocità
 	float rotation = 90.0f; //rotazione in gradi
+    public Transform cannon;
 
 	// Use this for initialization
 	void Start () {
@@ -50,7 +51,7 @@ public class InputController : MonoBehaviour {
 		if (axisFour < 0)
 			rotation = -Mathf.Acos (-axisFive) * (180 / Mathf.PI);
 
-		transform.GetChild(0).rotation = Quaternion.AngleAxis (rotation, new Vector3(0,0,1));
+		cannon.rotation = Quaternion.AngleAxis (rotation, new Vector3(0,0,1));
 	
 
 					/*SPARO*/
