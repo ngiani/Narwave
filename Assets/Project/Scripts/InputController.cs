@@ -5,7 +5,7 @@ using UnityEngine;
 public class InputController : MonoBehaviour {
 
 	public float speed = 1.0f;//velocità
-	float rotation = 90.0f; //rotazione in gradi
+	public float rotation = 90.0f; //rotazione in gradi
     public Transform cannon;
 
     public Transform minMovementLimit;
@@ -57,15 +57,16 @@ public class InputController : MonoBehaviour {
         float axisFive = Input.GetAxis ("AxisFive");
 		float axisFour = Input.GetAxis ("AxisFour");
 
-		//Angolo di rotazione è l'arcoseno del valore restituito dal quinto asse, convertito in gradi
-		if  (axisFour >= 0)
-			rotation = Mathf.Acos(-axisFive) * (180 / Mathf.PI);
-		if (axisFour < 0)
-			rotation = -Mathf.Acos (-axisFive) * (180 / Mathf.PI);
+		//Angolo di rotazione è l'arcotangente del valore restituito dal quinto asse, convertito in gradi
 
+		if (axisFour != 0.0f || axisFive != 0.0f) {
+			rotation = (Mathf.Atan2 (axisFive, axisFour) * Mathf.Rad2Deg) + 90.0f;
+			// Do something with the angle here.
+		} 
+		
 		cannon.rotation = Quaternion.AngleAxis (rotation, new Vector3(0,0,1));
-	
 
+		//Debug.Log (rotation);
 					/*SPARO*/
 
 		if (Input.GetButtonDown("LeftBumper"))
