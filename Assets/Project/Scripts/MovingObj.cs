@@ -5,6 +5,7 @@ using UnityEngine;
 public class MovingObj : MonoBehaviour {
 
 	public float velocity;
+	public float start, end;
 	
 	// Use this for initialization
 	void Start () {
@@ -13,10 +14,10 @@ public class MovingObj : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		this.transform.localPosition = Vector3.MoveTowards(this.transform.localPosition, new Vector3(-670f, transform.localPosition.y, transform.localPosition.z), velocity*Time.deltaTime);
-		if(transform.localPosition.x <= -670f + 10f)
+		this.transform.localPosition = Vector3.MoveTowards(this.transform.localPosition, new Vector3(end, transform.localPosition.y, transform.localPosition.z), velocity*Time.deltaTime);
+		if(transform.localPosition.x <= end + 1f)
 		{
-			transform.localPosition = new Vector3(200f, transform.localPosition.y, transform.localPosition.z);
+			transform.localPosition = new Vector3(start, transform.localPosition.y, transform.localPosition.z);
 		}
 	}
 }
